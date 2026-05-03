@@ -1,0 +1,27 @@
+# Environment files
+.env
+.env.*
+
+# Secrets / API keys
+*.key
+*.pem
+
+# Local data files (your knowledge base)
+*.txt
+
+# Node / system files
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+venv/

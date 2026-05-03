@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yoga Trainer</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #111;
+      color: white;
+    }
+
+    #avatarContainer {
+      width: 100%;
+      transition: all 0.5s ease;
+    }
+
+    .small-avatar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      z-index: 999;
+    }
+
+    #videoContainer {
+      display: none;
+      margin-top: 20px;
+    }
+
+    iframe {
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>🧘 Yoga Trainer</h2>
+
+  <!-- Avatar -->
+  <div id="avatarContainer">
+    <lemon-slice-widget agent-id="agent_960a480563fb66ac"></lemon-slice-widget>
+  </div>
+
+  <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
+
+  <!-- Video -->
+  <div id="videoContainer">
+    <iframe id="videoPlayer" width="500" height="300" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+  <br>
+
+  <!-- Buttons -->
+  <button onclick="playTadasana()">🧘 Tadasana</button>
+  <button onclick="playVrikshasana()">🌳 Vrikshasana</button>
+  <button onclick="repeatPose()">🔁 Repeat</button>
+
+  <script>
+    const videos = {
+      tadasana: "https://www.youtube.com/embed/MdTEXIdHxpI",
+      vrikshasana: "https://www.youtube.com/embed/FuKBRfvLGj8"
+    };
+
+    let currentPose = "tadasana";
+
+    function playTadasana() {
+      currentPose = "tadasana";
+      playVideo();
+    }
+
+    function playVrikshasana() {
+      currentPose = "vrikshasana";
+      playVideo();
+    }
+
+    function repeatPose() {
+      playVideo();
+    }
+
+    function playVideo() {
+      const player = document.getElementById("videoPlayer");
+      const videoContainer = document.getElementById("videoContainer");
+      const avatar = document.getElementById("avatarContainer");
+
+      videoContainer.style.display = "block";
+      player.src = videos[currentPose] + "?autoplay=1";
+
+      // move avatar to corner automatically
+      avatar.classList.add("small-avatar");
+    }
+  </script>
+
+</body>
+</html>
