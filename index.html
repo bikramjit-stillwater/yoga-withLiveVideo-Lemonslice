@@ -1,69 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Yoga Trainer</title>
+  <title>Stillwater Yoga Trainer</title>
 
   <style>
     body {
-      font-family: Arial;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e6f4f1, #f7fbfa);
+      color: #2d3a3a;
       text-align: center;
-      background: #111;
-      color: white;
     }
 
+    /* LOGO */
+    #logo {
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      width: 120px;
+      opacity: 0.9;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #2c5f5d;
+    }
+
+    p {
+      margin-bottom: 30px;
+      color: #666;
+    }
+
+    /* AVATAR */
     #avatarContainer {
-      width: 100%;
-      transition: all 0.5s ease;
+      transition: all 0.4s ease;
+      margin-bottom: 20px;
     }
 
     .small-avatar {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 200px;
+      width: 220px;
       z-index: 999;
     }
 
+    /* VIDEO */
     #videoContainer {
       display: none;
       margin-top: 20px;
     }
 
     iframe {
-      border-radius: 10px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* BUTTONS */
+    .buttons {
+      margin-top: 25px;
     }
 
     button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
+      padding: 12px 22px;
+      margin: 8px;
+      font-size: 15px;
+      border: none;
+      border-radius: 30px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2c7a7b;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #68b0ab;
+      color: white;
+    }
+
+    .btn-repeat {
+      background: #cdeae7;
+      color: #2c5f5d;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     }
   </style>
 </head>
 
 <body>
 
-  <h2>🧘 Yoga Trainer</h2>
+  <!-- LOGO (replace src with your hosted logo URL) -->
+  <img id="logo" src="YOUR_LOGO_URL_HERE" alt="Stillwater Logo">
 
-  <!-- Avatar -->
-  <div id="avatarContainer">
-    <lemon-slice-widget agent-id="agent_960a480563fb66ac"></lemon-slice-widget>
+  <div class="container">
+
+    <h1>🧘 Stillwater Yoga</h1>
+    <p>Guided wellness. Calm mind. Balanced body.</p>
+
+    <!-- Avatar -->
+    <div id="avatarContainer">
+      <lemon-slice-widget agent-id="agent_960a480563fb66ac"></lemon-slice-widget>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
+
+    <!-- Video -->
+    <div id="videoContainer">
+      <iframe id="videoPlayer" width="600" height="340" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="btn-primary" onclick="playTadasana()">🧘 Tadasana</button>
+      <button class="btn-secondary" onclick="playVrikshasana()">🌳 Vrikshasana</button>
+      <button class="btn-repeat" onclick="repeatPose()">🔁 Repeat</button>
+    </div>
+
   </div>
-
-  <script type="module" src="https://unpkg.com/@lemonsliceai/lemon-slice-widget"></script>
-
-  <!-- Video -->
-  <div id="videoContainer">
-    <iframe id="videoPlayer" width="500" height="300" allow="autoplay" allowfullscreen></iframe>
-  </div>
-
-  <br>
-
-  <!-- Buttons -->
-  <button onclick="playTadasana()">🧘 Tadasana</button>
-  <button onclick="playVrikshasana()">🌳 Vrikshasana</button>
-  <button onclick="repeatPose()">🔁 Repeat</button>
 
   <script>
     const videos = {
@@ -95,7 +164,7 @@
       videoContainer.style.display = "block";
       player.src = videos[currentPose] + "?autoplay=1";
 
-      // move avatar to corner automatically
+      // move avatar to corner
       avatar.classList.add("small-avatar");
     }
   </script>
